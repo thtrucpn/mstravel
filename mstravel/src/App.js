@@ -1,21 +1,20 @@
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 
+import MainLayout from './layouts/MainLayout';
+import HomePage from './pages/HomePage';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 function App() {
-  const [message, setMessage] = useState('');
-
-  useEffect(() => {
-    // Gọi API tới Express server
-    fetch('http://localhost:8000/')   // ngày đẹp trời nào đó sẽ sửa proxy của cái này 
-    
-      .then((res) => res.text())
-      .then((data) => setMessage(data))
-      .catch((error) => console.error('Error fetching data:', error));
-  }, []);
-
   return (
     <div className="App">
-      <h1>{message}</h1>
-    </div>
+      <Router> 
+        <MainLayout> 
+          <Routes>
+            <Route exact path = "/" element = {<HomePage/>}/>
+
+          </Routes>
+        </MainLayout>
+      </Router>
+    </div>  
   );
 }
 
